@@ -1,0 +1,6 @@
+annonce_homepage:
+    path:     /oussama
+    defaults: { _controller: AnnonceBundle:Default:index }
+annonce_page1:
+    path:     /homeAnnonce
+    defaults: { _controller: AnnonceBundle:Annonce:AfficheAnnonce}

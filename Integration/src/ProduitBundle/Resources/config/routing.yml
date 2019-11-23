@@ -1,0 +1,6 @@
+produit_homepage:
+    path:     /
+    defaults: { _controller: ProduitBundle:Default:index }
+authentification:
+    path:     /home
+    defaults: { _controller: ProduitBundle:Produit:affichage }

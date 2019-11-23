@@ -1,0 +1,31 @@
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+delivery:
+    resource: "@DeliveryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+commande:
+    resource: "@CommandeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+produit:
+    resource: "@ProduitBundle/Resources/config/routing.yml"
+    prefix:   /pidev
+
+annonce:
+    resource: "@AnnonceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /pidev
