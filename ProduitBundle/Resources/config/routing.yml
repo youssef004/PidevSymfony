@@ -1,0 +1,37 @@
+produit_homepage:
+    path:     /homeP
+    defaults: { _controller: ProduitBundle:Default:index }
+authentification:
+    path:     /home
+    defaults: { _controller: ProduitBundle:Produit:affichage }
+homeAdmine:
+    path:     /homeAdmine
+    defaults: { _controller: ProduitBundle:Produit:affichage1 }
+create:
+    path:     /addProd
+    defaults: { _controller: ProduitBundle:Produit:create }
+createCateg:
+    path:     /addCateg
+    defaults: { _controller: ProduitBundle:Produit:createCateg }
+showProd:
+    path:     /showProd
+    defaults: { _controller: ProduitBundle:Produit:showProduit }
+showProdClient:
+    path:     /showProdClient
+    defaults: { _controller: ProduitBundle:Produit:showProduitClient }
+showCategProd:
+    path:     /showCategProd
+    defaults: { _controller: ProduitBundle:Produit:showCategoryProduit }
+showHistoryProd:
+    path:     /HistoryProd
+    defaults: { _controller: ProduitBundle:Produit:showHistoryProduit }
+prod_delete:
+    path:     /delete{IdProduit}
+    defaults: { _controller: ProduitBundle:Produit:deleteProd }
+Categprod_delete:
+    path:     /deleteCateg/{IdCategoryProd}
+    defaults: { _controller: ProduitBundle:Produit:deleteCategProd }
+prod_update:
+    path:     /update/{IdProduit}
+    defaults: { _controller: ProduitBundle:Produit:updateProd }
+

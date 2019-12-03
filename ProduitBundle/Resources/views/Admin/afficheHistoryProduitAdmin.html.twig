@@ -1,0 +1,77 @@
+
+{% extends 'base1.html.twig' %}
+
+            {% block content %}
+                <script>
+                    function myFunction() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("recherche");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("recherchetable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[1];
+                            if (td) {
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                </script>
+
+
+                <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Affichage Produit
+                        </h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search"  id="recherche" onkeyup="myFunction()" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table id="recherchetable"  class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+
+
+                                <th>IdProduit</th>
+                                <th>NameProduit</th>
+                                <th>dateProduit </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in produits %}
+                                <tr>
+
+                                    <td>{{ i.IdProduit}}</td>
+                                    <td>{{ i.nameProduit}}</td>
+                                    <td>{{ i.dateproduit |date}}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+
+
+
+            {% endblock %}

@@ -1,0 +1,125 @@
+
+{% extends 'base1.html.twig' %}
+
+            {% block content %}
+                <script>
+                    function myFunction() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("recherche");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("recherchetable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[0];
+                            if (td) {
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                </script>
+
+                <script type="text/javascript" src="{{ asset('vendor/js/socialite.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('vendor/js/socialite.min.js') }}"></script>
+                <!--...-->
+
+                <ul class="social-buttons cf">
+                    <li>
+                        <a href="http://twitter.com/share" class="socialite twitter-share" data-text="Socialite.js" data-url="{{ app.request.getUri }}" data-count="vertical" rel="nofollow" target="_blank"><span class="vhidden">Share on Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url={{ app.request.getUri }}" class="socialite googleplus-one" data-size="tall" data-href="{{ app.request.getUri }}" rel="nofollow" target="_blank"><span class="vhidden">Share on Google+</span></a>
+                    </li>
+                    <li>
+                        <a href="http://www.facebook.com/sharer.php?u={{ app.request.getUri }} }}" class="socialite facebook-like" data-href="{{ app.request.getUri }}" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank"><span class="vhidden">Share on Facebook</span></a>
+                    </li>
+                </ul>
+
+                <!--...-->
+
+                <script>
+                    $(document).ready(function() {
+                        Socialite.load();
+                    });
+                </script>
+
+
+                <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Affichage Produit
+                        </h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" id="recherche" onkeyup="myFunction()" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table id="recherchetable" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+
+
+
+                                <th>NameProduit</th>
+                                <th> Category</th>
+                                <th>TypeProduit</th>
+                                <th>quantityProduit</th>
+                                <th>priceProduit.DT</th>
+                                <th>Promotion.DT</th>
+                                <th>pictureProduit </th>
+                                <th>descriptionProduit </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in produits %}
+                                <tr>
+                                    <td>{{ i.nameProduit}}</td>
+                                    <td>{{i.Category}}</td>
+                                    <td>{{ i.typeproduit}}</td>
+                                    <td>{{ i.quantityproduit}}</td>
+                                    <td>{{ i.priceproduit}}</td>
+
+                                    {% if i.Promotion == true %}
+                                       <td>{{ ((i.priceproduit)*3)/4}}</td>
+
+                                    {% else %}
+                                        <td>No promo</td>
+                                    {% endif %}
+
+                                    <td><img src="{{ asset('/Integration/public/uploads/')~i.pictureproduit}}" alt="message user image" class="direct-chat-img" ></td>
+                                    <td>{{ i.descriptionproduit}}</td>
+                                    <td><a href="{{ path('prod_update',{'IdProduit':i.IdProduit}) }}">
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-minus-circle"></i> update
+                                            </button></a></td>
+                                    <td><a href="{{ path('prod_delete',{'IdProduit':i.IdProduit}) }}">
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-minus-circle"></i> Supprimer
+                                            </button></a></td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+
+
+
+            {% endblock %}
